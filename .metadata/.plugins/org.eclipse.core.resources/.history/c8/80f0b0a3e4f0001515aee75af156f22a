@@ -1,0 +1,9 @@
+public interface QueueADT {
+	public void enqueue(Vehicle vehicle);
+	
+	public Vehicle dequeue(Vehicle vehicle);
+
+	public int size();
+
+	public boolean isEmpty();
+}

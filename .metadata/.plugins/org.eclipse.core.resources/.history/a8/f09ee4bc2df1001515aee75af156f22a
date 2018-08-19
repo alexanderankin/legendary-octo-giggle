@@ -1,0 +1,312 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+class IntersectionSimulator {
+	public static final int MAX_ARRIVED_CARS = 6;
+	
+	private static BooleanSource bs;
+	
+	/**
+	 * 
+	 * args: 
+	 * simulationTime (int): Indicates the desired total simulation time.
+	 * arrivalProbability (double): Indicates the probability that a vehicle will arrive at any lane during a time step.
+	 * numRoads (int): Indicates the number of two-way roads that meet at this intersection.
+	 * names (String[]): An array of size numRoads indicating the name of each road.
+	 * greenTimes (int[]): An array of size numRoads indicating the green time for each road.
+	 */
+	public static void simulate(
+		int simulationTime,
+		double arrivalProbability,
+		int numRoads,
+		String[] names,
+		int[] greenTimes) /*throws Exception*/ {
+		
+		// Statistics Counters
+		int carsCurrentlyWaiting = 0;
+		int totalCarsPassed = 0;
+		int totalWaitTime = 0;
+		double averageWaitTime = 0; // total wait / time total cars.
+		int totalVehicles = 0;
+		int longestWaitTime = 0;
+
+		
+		boolean roadsempty = false;  // end condition
+
+		// roads and intersection????
+		TwoWayRoad[] roads = new TwoWayRoad[numRoads];
+		for (int i = 0; i < numRoads; i++) {
+			try {
+				TwoWayRoad r = new TwoWayRoad(greenTimes[i], names[i]);
+				roads[i] = r;
+			}
+			catch (Exception e) {/* doesnt happen, ty based input sanitization */}
+		}
+
+		Intersection isection = new Intersection(roads);
+
+		// go until roads empty.
+		int htime = 0;
+		for (int time = 0; time < simulationTime || roadsempty; time += 1) {
+
+			// print Time Step
+			System.out.println("Time Step: " + (time + 1));
+
+			System.out.printf("%4s%s for %s\n\n", "", 
+					// if timer is less than green value, "green" : "Left
+					isection.getCountdownTimer() < isection.getRoads()[isection.getLightIndex()].getGreenTime() ?  // should be getting getLeftSignalTime
+					"Green Light" : "Left Signal", names[isection.getLightIndex()]);
+			System.out.println("Timer = " + isection.getCountdownTimer());
+			
+			ArrayList<Vehicle> added = new ArrayList<>();
+			ArrayList<String> addedroadname = new ArrayList<>();
+			ArrayList<String> addedwayname = new ArrayList<>();
+			ArrayList<String> addedlanename = new ArrayList<>();
+			
+			// BEGIN RANDOM CAR ADDING
+			if (time < simulationTime) {				
+
+				added.clear();
+				addedroadname.clear();
+				addedwayname.clear();
+				addedlanename.clear();
+				
+				
+				// handle vehicles arriving
+				int numArrivedCars = 0;
+				
+				// iterate over all lanes, keeping below MAX_ARRIVED_CARS
+				// iterate over arguments of Intersection.enqueueVehicle();
+				
+				// roadIndex
+				outer: for (int roadCounter = 0; roadCounter < numRoads; roadCounter++) {
+					String roadName = names[roadCounter];
+					// wayIndex
+					for (int wayCounter = 0; wayCounter < TwoWayRoad.NUM_WAYS; wayCounter++) {
+						// determine which way we are going.
+						String wayName;
+						if (wayCounter == TwoWayRoad.BACKWARD_WAY)
+							wayName = "backward".toUpperCase();
+						else // if (wayCounter == TwoWayRoad.FORWARD_WAY)
+							wayName = "forward".toUpperCase();
+						
+
+						// laneIndex
+						for (int laneCounter = 0; laneCounter < TwoWayRoad.NUM_LANES; laneCounter++) {
+							if (numArrivedCars >= MAX_ARRIVED_CARS)
+								break outer;
+							
+							// determine 
+							String laneName;
+							if (laneCounter == TwoWayRoad.LEFT_LANE)
+								laneName = "left".toUpperCase();
+							else if (laneCounter == TwoWayRoad.MIDDLE_LANE)
+								laneName = "middle".toUpperCase();
+							else
+								laneName = "right".toUpperCase();
+							
+							if (bs.occurs()) { // returns true
+								numArrivedCars++;
+								Vehicle v = new Vehicle(time);
+								isection.enqueueVehicle(roadCounter, wayCounter, laneCounter, v);
+								
+								// keep track of added things for later.
+								added.add(v);
+								addedroadname.add(roadName);
+								addedwayname.add(wayName);
+								addedlanename.add(laneName);
+								
+								totalVehicles += 1;
+								carsCurrentlyWaiting += 1;
+								
+
+							}
+							
+						}
+					}
+				}
+			}
+			// END RANDOM ADD CAR
+			
+			// call some method on intersection and print status there.
+			Vehicle[] passed = isection.timeStep();
+			totalWaitTime += (added.size() - passed.length);
+			totalCarsPassed += passed.length;
+
+			// PRINT RANDOM CARS ADDED
+			System.out.printf("%4s%s\n", "", "arriving cars:".toUpperCase());
+			int addedCounter = 0;
+			for (Vehicle v : added) {
+				String roadName = addedroadname.get(addedCounter);
+				String wayName = addedwayname.get(addedCounter);
+				String laneName = addedlanename.get(addedCounter);
+				System.out.printf("%8s", "");
+				System.out.println("Car" + v.toString() + 
+						" entered " + roadName + ", going " + wayName +
+						" in " + laneName + " lane.");
+				addedCounter += 1;
+			}
+			System.out.println();
+			
+			// PRINT CARS PASSED
+			System.out.println("passing cars: ".toUpperCase());
+			for (int passedCounter = 0; passedCounter < passed.length; passedCounter++) {
+				Vehicle v = passed[passedCounter];
+				System.out.printf("%4sCar%s passes through. Wait time of%d.\n", "", v.toString(), time - v.getTimeArrived() );
+				// update longest wait time here.
+				longestWaitTime = Math.max(time - v.getTimeArrived(), longestWaitTime);
+			}
+			
+			// display lanes
+			isection.display();
+			
+			// PRINT STATISTICS
+			System.out.printf("%4s%s:\n", "", "statistics".toUpperCase());
+			System.out.printf("%8s%-24s%d %s", "", "Cars currently waiting: ", carsCurrentlyWaiting, "cars");
+			System.out.printf("%8s%-24s%d %s", "", "Total cars passed: ", totalCarsPassed, "cars");
+			System.out.printf("%8s%-24s%d %s", "", "Total wait time: ", totalWaitTime, "turns");
+			averageWaitTime = 1.0 * totalWaitTime / (1.0 * totalCarsPassed);
+			System.out.printf("%8s%-24s%f %s", "", "Average wait time: ", averageWaitTime, "turns");
+			
+			// System.exit(0);
+			// end of loop
+			htime = time;
+		}
+		System.out.printf("%4s%s:\n", "", "simulation summary:".toUpperCase());
+		System.out.printf("%8s%-24s%d %s", "", "Total time: ", htime, "cars");
+		System.out.printf("%8s%-24s%d %s", "", "Total vehicles: ", totalCarsPassed, "cars");
+		System.out.printf("%8s%-24s%d %s", "", "Longest wait time: ", longestWaitTime, "turns");
+		System.out.printf("%8s%-24s%f %s", "", "Total wait time: ", totalWaitTime, "turns");
+		System.out.printf("%8s%-24s%f %s", "", "Average wait time: ", (1.0 * 1/1), "turns");
+		
+		// end of method
+		
+	}
+
+	public static Scanner s = new Scanner(System.in);
+
+	private static boolean duplicate(String needle, String[] haystack) {
+		if (haystack == null) return false;
+		for (String h : haystack) {
+			if (h != null)
+				if (h.equals(needle)) return true;
+		}
+		return false;
+	}
+
+
+	private static boolean isEmpty(String[] sA) {
+		for (String s : sA)
+			if (s==null || s.length() == 0)
+				return true;
+
+		return false;
+	}
+
+	private static boolean isNegative(int[] iA) {
+		for (int i: iA)
+			if (i <= 0)
+				return true;
+
+		return false;
+	}
+
+	public static void main(String[] args) {
+		int simulationTime;
+		double arrivalProbability;
+		int numRoads;
+		String[] names;
+		int[] greenTimes;
+
+		for (;;) {
+			if (args.length > 1) {
+
+				simulationTime = Integer.parseInt(args[0]);
+				arrivalProbability = Double.parseDouble(args[1]);
+				numRoads = Integer.parseInt(args[2]);
+				names = new String[numRoads];
+				greenTimes = new int[numRoads];
+				
+				for (int i = 0; i < numRoads; ++i) {
+					names[i] = args[3 + i];
+					greenTimes[i] = Integer.parseInt(args[3 + numRoads + i]);
+				}
+
+				if (numRoads > 4 || numRoads < 2) {
+					System.out.println("min two, max four roads.");
+					System.exit(1);
+				}
+
+				// process args in simTime, prob, numRoads, names, times.
+			
+			} else {
+
+				System.out.println("Welcome to IntersectionSimulator 2016\n");
+				System.out.print("Input the simulation time: ");
+				simulationTime = Integer.parseInt(s.nextLine());
+
+				System.out.print("Input the arrival probability: ");
+				arrivalProbability = Double.parseDouble(s.nextLine());
+				if (arrivalProbability >= 1 || arrivalProbability <= 0) {
+					System.out.println("not a valid probability");
+					continue;
+				}
+				
+
+				System.out.print("Input number of Streets: ");
+				numRoads = Integer.parseInt(s.nextLine());
+
+				if (numRoads > 4 || numRoads < 2) {
+					System.out.println("min two, max four roads.");
+					System.exit(1);
+				}
+				
+				names = new String[numRoads];
+				greenTimes = new int[numRoads];
+
+				for (int i = 0; i < numRoads; i++) {
+					System.out.print("Input Street " + (i + 1) + " name: ");
+					names[i] = s.nextLine();
+					if (duplicate(names[i], Arrays.copyOfRange(names, 0, i))) {
+						System.out.println("Duplicate Detected.");
+						i -= 1;
+					}
+				}
+
+				for (int i = 0; i < numRoads; i++) {
+					System.out.print("Input max green time for " + names[i] + ": ");
+					greenTimes[i] = Integer.parseInt(s.nextLine());
+				}
+
+
+			}
+			if (isNegative(greenTimes) || isEmpty(names)) {
+				if (isNegative(greenTimes))
+					System.out.println("One of the times was negative.");
+				if (isEmpty(names)) {
+					System.out.println("One of the times was empty.");
+				}
+			} else {
+				break;
+			}
+		}
+
+		System.out.println("\nStarting Simulation...\n");
+		bs = new BooleanSource(arrivalProbability);
+		simulate(simulationTime, arrivalProbability, numRoads, names, greenTimes);
+	}
+
+	public static void main2(String[] args) {
+		try {
+			VehicleQueue q = new VehicleQueue();
+			q.enqueue(new Vehicle(0));
+			q.enqueue(new Vehicle(0));
+			System.out.println(q.toString(true));
+			System.out.println(q.toString(false));
+		} catch (Exception e) {
+			
+		}
+	}
+}

@@ -1,0 +1,3 @@
+class NotADirectoryException extends Exception {
+	
+}

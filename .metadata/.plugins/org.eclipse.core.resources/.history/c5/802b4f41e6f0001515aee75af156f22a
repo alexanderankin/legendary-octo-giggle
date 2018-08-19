@@ -1,0 +1,117 @@
+public class Intersection {
+	private TwoWayRoad[] roads;
+	private int lightIndex;  // represents the road with 'green' light.
+	private int countdownTimer;  // 
+
+	public TwoWayRoad[] getRoads() { return this.roads; }
+	public int getLightIndex() { return this.lightIndex; }
+	public void setLightIndex (int i) { this.lightIndex = i; }
+	public int getCountdownTimer() { return this.countdownTimer; }
+	public LightValue getCurrentLightValue() { return null; }
+
+	/**
+	 * 
+	 */
+	public Intersection (TwoWayRoad[] initRoads) throws IllegalArgumentException {
+		if (initRoads == null) throw new IllegalArgumentException();
+		for (TwoWayRoad r : initRoads) {
+			if (r == null) throw new IllegalArgumentException();
+		}
+		if (initRoads.length > 4) {
+			throw new IllegalArgumentException("max 4 roads");
+		}
+		// max 4 roads
+		this.roads = initRoads;
+
+		// this.countdownTimer = initRoads[0].getGreenTime();  //
+		this.lightIndex = 0;
+
+	}
+
+	/** 
+	 * check if red, switch, 
+	 * run proceed() on the lightIndex
+	 * if its empty 
+	 * 
+	 * todo: run by hand
+	 */
+	public Vehicle[] timeStep() {
+		//this.countdownTimer = initRoads[0].getGreenTime();  //
+	    if (roads[lightIndex].getLightValue() == LightValue.RED)
+	    {
+	        lightIndex = (lightIndex + 1) % roads.length;
+	        countdownTimer = roads[lightIndex].getGreenTime();
+	    }
+
+	    countdownTimer--;
+
+	    return roads[lightIndex].proceed(countdownTimer);
+	}
+
+	public void enqueueVehicle (int roadIndex, int wayIndex,
+		int laneIndex, Vehicle vehicle) {
+		return;
+	}
+
+	public void display() {
+		// for loop runs twice
+		for (TwoWayRoad r : roads) {
+			System.out.printf("%-4s%s: \n", "", r.getName());
+			System.out.printf("%34s%15s%s\n", "FORWARD", "", "BACKWARD");
+			System.out.printf("%-4s%s%-15s%s\n", "", "==============================",
+				"", "==============================");
+
+			System.out.printf("%4s%34s %s %s%5s%s %s %s\n", "",
+				"[L]",
+				//q.toString(true)
+				(true ? "x" : " "),
+				"",
+				(false ? " " : "x"),
+				"[R]",
+				//q.toString(false) );
+				"", "");
+			
+			System.out.printf("%-4s%s%-15s%s\n", "", "------------------------------",
+				"", "------------------------------");
+
+			System.out.printf("%-4s%s%-15s%s\n", "", "------------------------------",
+				"", "------------------------------");
+
+			System.out.printf("%-4s%s%-15s%s\n", "", "==============================",
+				"", "==============================");
+		}
+	}
+	/*
+    Route 219:                 
+                           FORWARD               BACKWARD
+    ==============================               ===============================
+                             [001] [L] x     [R]      
+    ------------------------------               -------------------------------
+                                   [M]       [M] // [002] passed through.
+    ------------------------------               -------------------------------
+                                   [R]     x [L] 
+    ==============================               ===============================
+    
+    320 Road:                  
+                           FORWARD               BACKWARD                  
+    ==============================               ===============================
+                                   [L] x   x [R]        
+    ------------------------------               -------------------------------
+                                   [M] x   x [M]     
+    ------------------------------               -------------------------------
+                             [003] [R] x   x [L] 
+    ==============================               ===============================
+	*/
+
+	public static void main(String[] args) {
+		try {
+			TwoWayRoad[] a = new TwoWayRoad[2];
+			a[0] = new TwoWayRoad(2, "one way");
+			a[1] = new TwoWayRoad(2, "ways dos");
+			Intersection t = new Intersection(a);
+			t.display();
+		} catch (Exception e) {
+			
+		}
+	}
+}

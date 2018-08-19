@@ -1,0 +1,19 @@
+class TestCase {
+	int row;
+	int col;
+	Rock[] rocks;
+	
+	public TestCase () {} // do not use.
+	public TestCase (int row, int col, Rock[] rocksIn) {
+		this.row = row + 4;
+		this.col = col + 4;
+		if (rocksIn != null) {
+			this.rocks = new Rock[rocksIn.length];
+			int i = 0;
+			for (Rock r : rocksIn) {
+				this.rocks[i++].row = r.row + 2;
+				this.rocks[i++].col = r.col + 2;
+			}
+		}
+	}
+}

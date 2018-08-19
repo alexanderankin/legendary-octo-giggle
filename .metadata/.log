@@ -1,0 +1,222 @@
+!SESSION 2015-07-17 22:20:16.313 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.7.0_79
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2015-07-17 22:21:00.231
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 4 10011 2015-07-17 22:21:00.231
+!MESSAGE "Object Teams Patch for JDT/Core" is not applicable to the current configuration and will not be installed.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2015-07-17 22:21:00.281
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 4 10011 2015-07-17 22:21:00.282
+!MESSAGE "Object Teams Patch for JDT/Core" is not applicable to the current configuration and will not be installed.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2015-07-17 22:21:01.056
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 4 10011 2015-07-17 22:21:01.056
+!MESSAGE "Object Teams Patch for JDT/Core" is not applicable to the current configuration and will not be installed.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2015-07-17 22:21:01.057
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.operations 4 10011 2015-07-17 22:21:01.057
+!MESSAGE "Object Teams Patch for JDT/Core" is not applicable to the current configuration and will not be installed.
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2015-07-17 22:24:16.606
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.606
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.606
+!MESSAGE Software being installed: Eclipse Java Development Tools 3.11.0.v20150603-2000 (org.eclipse.jdt.feature.group 3.11.0.v20150603-2000)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.606
+!MESSAGE Software currently installed: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.606
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.606
+!MESSAGE Bidirectional Text Support 0.9.0.v20120522-1841 (org.eclipse.equinox.bidi 0.9.0.v20120522-1841)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.606
+!MESSAGE Bidirectional Text Support 0.10.0.v20130327-1442 (org.eclipse.equinox.bidi 0.10.0.v20130327-1442)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.606
+!MESSAGE Bidirectional Text Support 0.9.0.dist (org.eclipse.equinox.bidi 0.9.0.dist)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.606
+!MESSAGE Bidirectional Text Support 0.9.100.v20121107-021609 (org.eclipse.equinox.bidi 0.9.100.v20121107-021609)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.606
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE From: Eclipse Java Development Tools 3.11.0.v20150603-2000 (org.eclipse.jdt.feature.group 3.11.0.v20150603-2000)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE To: org.eclipse.jdt.ui [3.11.0.v20150527-0925]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.607
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE From: Java Development Tools UI 3.11.0.v20150527-0925 (org.eclipse.jdt.ui 3.11.0.v20150527-0925)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE To: bundle org.eclipse.equinox.bidi [0.10.0,2.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.607
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE From: Eclipse Platform 3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9 (org.eclipse.platform.feature.group 3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE To: org.eclipse.rcp.feature.group [3.8.1.dist-8LA2GODFTJUDJ21934]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.607
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE From: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE To: org.eclipse.platform.feature.group [3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.607
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE From: Eclipse RCP 3.8.1.dist-8LA2GODFTJUDJ21934 (org.eclipse.rcp.feature.group 3.8.1.dist-8LA2GODFTJUDJ21934)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.607
+!MESSAGE To: org.eclipse.equinox.bidi [0.9.0.dist]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2015-07-17 22:24:16.630
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.630
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE Software being installed: Eclipse Java Development Tools 3.11.0.v20150603-2000 (org.eclipse.jdt.feature.group 3.11.0.v20150603-2000)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE Software currently installed: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.630
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE Bidirectional Text Support 0.9.0.v20120522-1841 (org.eclipse.equinox.bidi 0.9.0.v20120522-1841)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE Bidirectional Text Support 0.10.0.v20130327-1442 (org.eclipse.equinox.bidi 0.10.0.v20130327-1442)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE Bidirectional Text Support 0.9.0.dist (org.eclipse.equinox.bidi 0.9.0.dist)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE Bidirectional Text Support 0.9.100.v20121107-021609 (org.eclipse.equinox.bidi 0.9.100.v20121107-021609)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.630
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE From: Eclipse Java Development Tools 3.11.0.v20150603-2000 (org.eclipse.jdt.feature.group 3.11.0.v20150603-2000)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE To: org.eclipse.jdt.ui [3.11.0.v20150527-0925]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.630
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE From: Java Development Tools UI 3.11.0.v20150527-0925 (org.eclipse.jdt.ui 3.11.0.v20150527-0925)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE To: bundle org.eclipse.equinox.bidi [0.10.0,2.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.630
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE From: Eclipse Platform 3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9 (org.eclipse.platform.feature.group 3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE To: org.eclipse.rcp.feature.group [3.8.1.dist-8LA2GODFTJUDJ21934]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.630
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE From: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE To: org.eclipse.platform.feature.group [3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:16.630
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE From: Eclipse RCP 3.8.1.dist-8LA2GODFTJUDJ21934 (org.eclipse.rcp.feature.group 3.8.1.dist-8LA2GODFTJUDJ21934)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:16.630
+!MESSAGE To: org.eclipse.equinox.bidi [0.9.0.dist]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2015-07-17 22:24:17.067
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.068
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE Software being installed: Eclipse Java Development Tools 3.11.0.v20150603-2000 (org.eclipse.jdt.feature.group 3.11.0.v20150603-2000)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE Software currently installed: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.068
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE Bidirectional Text Support 0.9.0.v20120522-1841 (org.eclipse.equinox.bidi 0.9.0.v20120522-1841)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE Bidirectional Text Support 0.10.0.v20130327-1442 (org.eclipse.equinox.bidi 0.10.0.v20130327-1442)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE Bidirectional Text Support 0.9.0.dist (org.eclipse.equinox.bidi 0.9.0.dist)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE Bidirectional Text Support 0.9.100.v20121107-021609 (org.eclipse.equinox.bidi 0.9.100.v20121107-021609)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.068
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE From: Eclipse Java Development Tools 3.11.0.v20150603-2000 (org.eclipse.jdt.feature.group 3.11.0.v20150603-2000)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE To: org.eclipse.jdt.ui [3.11.0.v20150527-0925]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.068
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE From: Java Development Tools UI 3.11.0.v20150527-0925 (org.eclipse.jdt.ui 3.11.0.v20150527-0925)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE To: bundle org.eclipse.equinox.bidi [0.10.0,2.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.068
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE From: Eclipse Platform 3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9 (org.eclipse.platform.feature.group 3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE To: org.eclipse.rcp.feature.group [3.8.1.dist-8LA2GODFTJUDJ21934]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.068
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE From: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE To: org.eclipse.platform.feature.group [3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.068
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE From: Eclipse RCP 3.8.1.dist-8LA2GODFTJUDJ21934 (org.eclipse.rcp.feature.group 3.8.1.dist-8LA2GODFTJUDJ21934)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.068
+!MESSAGE To: org.eclipse.equinox.bidi [0.9.0.dist]
+
+!ENTRY org.eclipse.equinox.p2.operations 4 0 2015-07-17 22:24:17.069
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.069
+!MESSAGE Cannot complete the install because of a conflicting dependency.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.069
+!MESSAGE Software being installed: Eclipse Java Development Tools 3.11.0.v20150603-2000 (org.eclipse.jdt.feature.group 3.11.0.v20150603-2000)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.069
+!MESSAGE Software currently installed: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.069
+!MESSAGE Only one of the following can be installed at once: 
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.069
+!MESSAGE Bidirectional Text Support 0.9.0.v20120522-1841 (org.eclipse.equinox.bidi 0.9.0.v20120522-1841)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.069
+!MESSAGE Bidirectional Text Support 0.10.0.v20130327-1442 (org.eclipse.equinox.bidi 0.10.0.v20130327-1442)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.069
+!MESSAGE Bidirectional Text Support 0.9.0.dist (org.eclipse.equinox.bidi 0.9.0.dist)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.069
+!MESSAGE Bidirectional Text Support 0.9.100.v20121107-021609 (org.eclipse.equinox.bidi 0.9.100.v20121107-021609)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.070
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE From: Eclipse Java Development Tools 3.11.0.v20150603-2000 (org.eclipse.jdt.feature.group 3.11.0.v20150603-2000)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE To: org.eclipse.jdt.ui [3.11.0.v20150527-0925]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.070
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE From: Java Development Tools UI 3.11.0.v20150527-0925 (org.eclipse.jdt.ui 3.11.0.v20150527-0925)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE To: bundle org.eclipse.equinox.bidi [0.10.0,2.0.0)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.070
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE From: Eclipse Platform 3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9 (org.eclipse.platform.feature.group 3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE To: org.eclipse.rcp.feature.group [3.8.1.dist-8LA2GODFTJUDJ21934]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.070
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE From: Eclipse Platform 3.7.0.debbuild (org.eclipse.platform.ide 3.7.0.debbuild)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE To: org.eclipse.platform.feature.group [3.8.1.dist-A8F8_IVSG4VZSDmg7oLVfBs5JohYFyJZcMPL9]
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 1 2015-07-17 22:24:17.070
+!MESSAGE Cannot satisfy dependency:
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE From: Eclipse RCP 3.8.1.dist-8LA2GODFTJUDJ21934 (org.eclipse.rcp.feature.group 3.8.1.dist-8LA2GODFTJUDJ21934)
+!SUBENTRY 3 org.eclipse.equinox.p2.director 4 0 2015-07-17 22:24:17.070
+!MESSAGE To: org.eclipse.equinox.bidi [0.9.0.dist]

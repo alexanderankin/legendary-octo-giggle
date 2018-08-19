@@ -1,0 +1,25 @@
+class BooleanSource {
+	private double probability;
+	public double getProbability () { return probability; }
+	public void setProbability (double initProbability) throws IllegalArgumentException {
+		if (initProbability <= 0 || initProbability > 1) {
+			throw new IllegalArgumentException();
+		}
+		probability = initProbability;
+	}
+
+	/*public BooleanSource() {}*/
+	public BooleanSource (int initProbability) throws IllegalArgumentException {
+		this.setProbability(initProbability);
+	}
+
+	/**
+	 * returns true with instantiated probability
+	 * 
+	 * uses Math.random
+	 * @return whether or not event occurred.
+	 */
+	public boolean occurs() {
+		return Math.random() < this.probability;
+	}
+}

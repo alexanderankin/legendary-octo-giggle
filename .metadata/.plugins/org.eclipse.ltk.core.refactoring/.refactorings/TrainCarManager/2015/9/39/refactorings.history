@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;api.TrainLinkedList.setCursordata(...)&apos; to &apos;setCursorData&apos;&#x0A;- Original project: &apos;TrainCarManager&apos;&#x0A;- Original element: &apos;api.TrainLinkedList.setCursordata(...)&apos;&#x0A;- Renamed element: &apos;api.TrainLinkedList.setCursorData(...)&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;setCursordata&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;api{TrainLinkedList.java[TrainLinkedList~setCursordata~QTrainCar;" name="setCursorData" references="true" stamp="1442883305774" version="1.0"/>
+</session>

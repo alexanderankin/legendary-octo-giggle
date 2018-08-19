@@ -1,0 +1,6 @@
+1445328908168	Rename local variable 'result'
+1445329642515	Rename compilation unit 'Simulation.java'
+1445338361925	Delete element
+1445340261268	Rename field 'timeArrive'
+1445342416797	Rename local variable 'r'
+1445376647324	Encapsulate field 'totalPacketsDropped'

@@ -1,0 +1,3 @@
+class FullDirectoryException extends Exception {
+	
+}

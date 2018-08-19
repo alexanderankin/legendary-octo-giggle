@@ -1,0 +1,125 @@
+public class Intersection {
+	public static final int MAX_ROADS = 4;
+	private TwoWayRoad[] roads;
+	private int lightIndex;  // represents the road with 'green' light.
+	private int countdownTimer;  // 
+
+	public TwoWayRoad[] getRoads() { return this.roads; }
+	public int getLightIndex() { return this.lightIndex; }
+	public void setLightIndex (int i) { this.lightIndex = i; }
+	public int getCountdownTimer() { return this.countdownTimer; }
+	public LightValue getCurrentLightValue() { return null; }
+
+	/**
+	 * should initialize countdown timer
+	 */
+	public Intersection (TwoWayRoad[] initRoads) throws IllegalArgumentException {
+		if (initRoads == null) throw new IllegalArgumentException();
+		for (TwoWayRoad r : initRoads) {
+			if (r == null) throw new IllegalArgumentException();
+		}
+		if (initRoads.length > MAX_ROADS) {
+			throw new IllegalArgumentException("max 4 roads");
+		}
+		// max 4 roads
+		this.roads = initRoads;
+
+		this.countdownTimer = roads[0].getGreenTime();  //
+		this.lightIndex = 0;
+
+	}
+
+	/** 
+	 * 
+	 * 
+	 * todo: run by hand
+	 */
+	public Vehicle[] timeStep() {
+		
+		//this.countdownTimer = initRoads[0].getGreenTime();  //
+	    if (roads[lightIndex].getLightValue() == LightValue.RED)
+	    {
+	        lightIndex = (lightIndex + 1) % roads.length;
+	        countdownTimer = roads[lightIndex].getGreenTime();
+	    }
+
+	    countdownTimer--;
+
+	    return roads[lightIndex].proceed(countdownTimer);
+	}
+
+	public void enqueueVehicle (int roadIndex, int wayIndex,
+			int laneIndex, Vehicle vehicle) {
+		
+		
+	}
+
+	public void printStatus() {
+		System.out.println("    " + (this.countdownTimer <= 
+				this.roads[lightIndex].getLeftSignalGreenTime() ? "Left Signal" : 
+				"Green Light") + " for " + this.roads[lightIndex].getName());
+		System.out.println("    " + "Timer = " + this.countdownTimer);
+		System.out.println();
+	}
+	
+	public void display() {
+		// for loop runs twice
+		for (TwoWayRoad r : roads) {
+			System.out.printf("%-4s%s: \n", "", r.getName());
+			System.out.printf("%34s%15s%s\n", "FORWARD", "", "BACKWARD");
+			System.out.printf("%-4s%s%-15s%s\n", "", "==============================",
+				"", "==============================");
+			
+			
+			System.out.printf("%34s %s %s%4s %s %s %s\n",
+					(r.getForwardLanes()[TwoWayRoad.LEFT_LANE].toString(true)),
+					"[L]",
+					(true ? "x" : " "),
+					"",
+					(false ? " " : "x"),
+					"[R]",
+					r.getBackwardLanes()[TwoWayRoad.RIGHT_LANE].toString(false));
+			
+			
+			System.out.printf("%-4s%s%-15s%s\n", "", "------------------------------",
+				"", "------------------------------");
+			
+			System.out.printf("%34s %s %s%4s %s %s %s\n",
+					r.getForwardLanes()[TwoWayRoad.MIDDLE_LANE].toString(true),
+					"[M]",
+					(true ? "x" : " "),
+					"",
+					(false ? " " : "x"),
+					"[M]",
+					r.getBackwardLanes()[TwoWayRoad.MIDDLE_LANE].toString(false));
+
+			System.out.printf("%-4s%s%-15s%s\n", "", "------------------------------",
+				"", "------------------------------");
+			
+			System.out.printf("%34s %s %s%4s %s %s %s\n",
+					r.getForwardLanes()[TwoWayRoad.RIGHT_LANE].toString(true),
+					"[R]",
+					(true ? "x" : " "),
+					"",
+					(false ? " " : "x"),
+					"[L]",
+					r.getBackwardLanes()[TwoWayRoad.LEFT_LANE].toString(false));
+
+			System.out.printf("%-4s%s%-15s%s\n", "", "==============================",
+				"", "==============================");
+			System.out.println();
+		}
+	}
+
+	public static void main(String[] args) {
+		try {
+			TwoWayRoad[] a = new TwoWayRoad[2];
+			a[0] = new TwoWayRoad(2, "one way");
+			a[1] = new TwoWayRoad(2, "ways dos");
+			Intersection t = new Intersection(a);
+			t.display();
+		} catch (Exception e) {
+			
+		}
+	}
+}

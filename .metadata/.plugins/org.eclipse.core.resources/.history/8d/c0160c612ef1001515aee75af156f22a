@@ -1,0 +1,149 @@
+import java.util.*;
+
+class TwoWayRoad {
+	public static final int FORWARD_WAY = 0;
+	public static final int BACKWARD_WAY = 1;
+	public static final int NUM_WAYS = 2;
+
+	public static final int LEFT_LANE = 0;
+	public static final int MIDDLE_LANE = 1;
+	public static final int RIGHT_LANE = 2;
+	public static final int NUM_LANES = 3;
+
+	private String name = null;
+	private int greenTime;// = 0; // why was it = 0?
+	private int leftSignalGreenTime;
+	private VehicleQueue[][] lanes;
+	private LightValue lightValue;
+	
+	public VehicleQueue[] getForwardLanes() {
+		return this.lanes[FORWARD_WAY];
+	}
+	public VehicleQueue[] getBackwardLanes() {
+		System.out.println(Arrays.toString(this.lanes[BACKWARD_WAY]));
+		return this.lanes[BACKWARD_WAY];
+	}
+
+	// this should happen here, and not in intersection
+	// public LightValue getLightValue() { return this.lightValue; }
+	// public void setLightValue(LightValue l) { this.lightValue = l; }
+
+	public String getName () { return name; }
+	public int getGreenTime () { return greenTime; }
+	public LightValue getLightValue () { return this.lightValue; }
+	/*public int getLeftSignalGreenTime () { return leftSignalGreenTime; }*/
+
+
+	public TwoWayRoad (int time, String name) throws IllegalArgumentException {
+		if (time <= 0 || name == null)
+			throw new IllegalArgumentException();
+		this.name = name;
+		this.greenTime = time;
+		this.lanes = new VehicleQueue[NUM_WAYS][NUM_LANES];
+		for (int lanedepthone = 0; lanedepthone < NUM_WAYS; lanedepthone++) {
+			lanes[lanedepthone] = new VehicleQueue[NUM_WAYS];
+			for (int lanedepthtwo = 0; lanedepthtwo < NUM_LANES; lanedepthtwo++) {
+				lanes[lanedepthone][lanedepthtwo] = new VehicleQueue();
+			}
+		}
+		
+		for (int i = 0; i < this.lanes.length; i++) {
+			VehicleQueue[] way = this.lanes[i];
+
+			for (int j = 0; j < way.length; j++) {
+				VehicleQueue lane = this.lanes[i][j];
+
+				lane = new VehicleQueue();
+			}
+		}
+
+		this.leftSignalGreenTime = (int) Math.floor(1.0/NUM_LANES * time);
+	}
+
+	/**
+	 * checks all of the lanes if empty
+	 * (used in proceed)
+	 * 
+	 */
+	private boolean lanesEmpty () {
+		for (VehicleQueue[] way : this.lanes) {
+			for (VehicleQueue lane : way) {
+				if (!(lane.isEmpty())) return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * 
+	 * this method should deque cars.
+	 * 
+	 * also prints because wtf
+	 * 
+	 * this method is called by 
+	 * TODO add first or add last
+	 */
+	public Vehicle[] proceed(int timerVal) throws IllegalArgumentException {
+		LinkedList<Vehicle> result = new LinkedList<>();
+
+		if (timerVal <= 0) throw new IllegalArgumentException();
+
+		// the signal is default green (because it was found 
+		// by the lightIndex)
+		if (timerVal <= leftSignalGreenTime) {
+			lightValue = LightValue.LEFT_SIGNAL;
+		}
+
+		if (lightValue == LightValue.LEFT_SIGNAL) {
+			for (int i = 0; i < NUM_WAYS; i++) {
+				result.addLast(this.lanes[i][LEFT_LANE].dequeue());
+			}
+		}
+		else if (lightValue == LightValue.GREEN) {
+			for (int i = 0; i < NUM_WAYS; i++) {
+				result.addLast(this.lanes[i][MIDDLE_LANE].dequeue());
+				result.addLast(this.lanes[i][RIGHT_LANE].dequeue());
+			}
+		}
+
+		// this happens last
+		if (timerVal == 1 || lanesEmpty()) 
+			lightValue = LightValue.RED;
+		
+		// calculate size of resulting array
+		int resultSize = 0;
+		for (Vehicle v : result) {
+			if (v != null) resultSize++;
+		}
+
+		// create resulting array
+		Vehicle[] resultArr = new Vehicle[resultSize];
+
+		// fill resulting array
+		resultSize = 0;
+		for (Vehicle v : result) {
+			if (v != null) resultArr[resultSize++] = v;
+		}
+
+		// System.out.println(Arrays.toString(resultArr));
+		return resultArr;
+	}
+
+	public boolean isLaneEmpty(int wayIndex, int laneIndex) 
+		throws IllegalArgumentException {
+		if (wayIndex > 1 || wayIndex < 0 || laneIndex < 0 || laneIndex > 2)
+			throw new IllegalArgumentException();
+		
+		return lanes[wayIndex][laneIndex].isEmpty();
+	}
+
+	public void enqueueVehicle(int wayIndex, int laneIndex,
+		Vehicle vehicle) throws IllegalArgumentException {
+		if (wayIndex > 1 || wayIndex < 0 || laneIndex < 0 ||
+			laneIndex > 2 || vehicle == null)
+			throw new IllegalArgumentException();
+
+		lanes[wayIndex][laneIndex].enqueue(vehicle);
+	}
+
+}

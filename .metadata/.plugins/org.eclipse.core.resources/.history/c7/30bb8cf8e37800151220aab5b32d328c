@@ -1,0 +1,133 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class TentAlgorithm {
+
+	// actually has to be ~global.
+	public static char[][] matrix;
+
+	public static char nextBagId = 65;
+	
+	public static void main(String[] args) {
+		
+		// loads testCase.
+		TestCase testCase;
+		Rock[] rocks = new Rock[1];
+		rocks[0] = new Rock(2, 2);
+		//testCase = new TestCase(3, 3, null);
+		testCase = new TestCase(5, 5, rocks);
+
+		// setup matrix
+		matrix = new char[testCase.row][testCase.col];
+		padMatrix();
+		printMatrix();
+		System.out.println("Next cell is " + nextCell().toString());
+		
+		for (int i = 0; i < 10; i++) {
+			isPlacementOk();
+			printMatrix();
+		}
+		printMatrix();
+
+		System.exit(0);
+
+		// run recursiveHelper()
+		// if (!recursiveHelper()) {
+		// 	System.out.println("Placing sleeping bags is not possible. ");
+		// 	System.exit(0);
+		// }
+
+		System.out.println("Done: \n");
+		printMatrix();
+		System.exit(0);
+	}
+
+	/**
+	 * Returns the next free cell, does not attempt to place a sleeping bag
+	 * there.
+	 * 
+	 */
+	public static Cell nextCell () { // project name 'upperleftmost'
+		Cell result = new Cell(matrix.length, matrix[0].length);
+
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
+				if (matrix[i][j] == ' ') {
+					if (i < result.row) {result.row = i; }
+					if (j < result.col) {result.col = j; }
+				}
+			}
+		}
+		return result;
+	}
+
+	public static void printMatrix () {
+		System.out.println("Tent:");
+		for(char[] row : TentAlgorithm.matrix) {
+			System.out.println("\t" + Arrays.toString(row));
+		}
+		System.out.println("End of Tent.\n");
+	}
+
+	public static void padMatrix () {
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
+				if ((i < 2 || i > matrix.length - 3) || (j < 2 || j > matrix[0].length - 3)) {
+					matrix[i][j] = 'R';
+				} else {
+					matrix[i][j] = ' ';
+				}
+			}
+		}
+	}
+	
+
+	public static void placeRocks (Rock[] rocks) {
+		if (rocks == null || rocks.length == 0) return;
+		for (Rock r : rocks) {
+			matrix[r.row][r.col] = 'R';
+		}
+	}
+
+
+	/**
+	 * Attempts to place a sleeping bag horizontally at the nextCell() and then
+	 * vertically. If placement is ok, then it performs placement.
+	 * 
+	 * @return whether or not this is possible
+	 */
+	public static boolean isPlacementOk () {
+		Cell nextCell = nextCell();
+		if (!((matrix[nextCell.row][nextCell.col] == ' ' && 
+					matrix[nextCell.row][nextCell.col + 1] == ' ' && 
+					matrix[nextCell.row][nextCell.col + 2] == ' ') || 
+					(matrix[nextCell.row][nextCell.col] == ' ' && 
+					matrix[nextCell.row + 1][nextCell.col] == ' ' && 
+					matrix[nextCell.row + 2][nextCell.col] == ' '))) {
+			return false;
+		}
+
+		if ((matrix[nextCell.row][nextCell.col] == ' ' && 
+			matrix[nextCell.row][nextCell.col + 1] == ' ' && 
+			matrix[nextCell.row][nextCell.col + 2] == ' ')) {
+			matrix[nextCell.row][nextCell.col] = nextBagId;
+			matrix[nextCell.row][nextCell.col + 1] = nextBagId;
+			matrix[nextCell.row][nextCell.col + 2] = nextBagId;
+		} else {
+			matrix[nextCell.row][nextCell.col] = nextBagId;
+			matrix[nextCell.row + 1][nextCell.col] = nextBagId;
+			matrix[nextCell.row + 2][nextCell.col] = nextBagId;
+		}
+		nextBagId++;
+		return true; // if method didnt return false earlier, then its true.
+	}
+
+	/** 
+	 * Calls the recursive method, which places sleeping bags 
+	 * until they fit.
+	 * 
+	 */
+	public static void recursiveHelper () {
+
+	}
+}

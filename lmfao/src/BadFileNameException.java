@@ -1,0 +1,3 @@
+class BadFileNameException extends Exception {
+	
+}

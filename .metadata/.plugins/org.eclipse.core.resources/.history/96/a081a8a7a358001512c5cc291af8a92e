@@ -1,0 +1,33 @@
+package api;
+
+public class TrainCarNode {
+	private TrainCar next;
+	private TrainCar trainCar;
+	private TrainCar prev;
+	public TrainCar getTrainCar() {
+		return trainCar;
+	}
+
+	public void setTrainCar(TrainCar trainCar) {
+		this.trainCar = trainCar;
+	}
+
+	
+
+	public TrainCar getNext() {
+		return next;
+	}
+
+	public void setNext(TrainCar next) {
+		this.next = next;
+	}
+
+	public TrainCar getPrev() {
+		return prev;
+	}
+
+	public void setPrev(TrainCar prev) {
+		this.prev = prev;
+	}
+
+}
